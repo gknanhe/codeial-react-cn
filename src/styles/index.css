@@ -1,11 +1,26 @@
+@import url('https://fonts.googleapis.com/css?family=DM+Sans:400,500,700|Source+Sans+Pro:300,400,600,700&display=swap');
+* {
+  outline: none;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  background: rgba(255, 255, 255, 0.11);
+  border-radius: 10px;
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+    sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f7f9fc;
+
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #24273b;
+  color: #ccc8db;
 }
 /* LOADER */
 .app-spinner {

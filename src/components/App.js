@@ -1,35 +1,24 @@
-import { useEffect , useState} from "react";
-import { getPost } from "../api";
-import Loader from "./Loader";
-import Home from '../pages/Home';
+import Loader from './Loader';
+import { Home, Login } from '../pages/index';
+import Navbar from './Navbar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useAuth } from '../hooks';
 
 function App() {
+  const auth = useAuth();
 
-  const [posts, setPost] = useState([]);
-  const [loader, setLoader] = useState(true);
-
-  useEffect(()=>{
-    const fetchPost = async()=>{
-      const response = await getPost();
-      if(response.success){
-        setPost(response.data.posts);
-      };
-
-      setLoader(false);
-
-      console.log(response);
-    };
-
-    fetchPost();
-  },[])
-
-
-  if(loader){
-    return <Loader />
+  if (auth.loading) {
+    return <Loader />;
   }
   return (
     <div className="App">
-      <Home posts={posts}/>
+      <Router>
+        <Navbar /> {/* as its there on all pages add it begor routes */}
+        <Routes>
+          <Route excat path="/" element={<Home />} />
+          <Route excat path="/login" element={<Login />} />
+        </Routes>
+      </Router>
     </div>
   );
 }
