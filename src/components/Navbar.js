@@ -8,7 +8,7 @@ const Navbar = () => {
   return (
     <div className={styles.nav}>
       <div className={styles.leftDiv}>
-        <Link to="/">
+        <Link className={styles.imgLink} to="/">
           <img
             alt=""
             src="https://ninjasfiles.s3.amazonaws.com/0000000000003454.png"
@@ -21,12 +21,14 @@ const Navbar = () => {
           <div className={styles.user}>
             <Link to="/settings">
               <img
-                src="https://image.flaticon.com/icons/svg/2154/2154651.svg"
+                src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
                 alt=""
                 className={styles.userDp}
               />
             </Link>
-            <span>{auth.user.name}</span>
+            <span style={{ marginRight: 50, fontSize: 21 }}>
+              {auth.user.name}
+            </span>
           </div>
         )}
 
@@ -46,7 +48,7 @@ const Navbar = () => {
                   <Link to="/login">Log in</Link>
                 </li>
                 <li>
-                  <Link to="/register">Register</Link>
+                  <Link to="/signup">Sign up</Link>
                 </li>
               </>
             )}

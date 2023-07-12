@@ -1,8 +1,10 @@
 import Loader from './Loader';
-import { Home, Login } from '../pages/index';
+import { Home, Login, Signup, Settings } from '../pages/index';
 import Navbar from './Navbar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import { useAuth } from '../hooks';
+// import Signup from '../pages/Signup';
+// import Settings from '../pages/Settings';
 
 function App() {
   const auth = useAuth();
@@ -17,6 +19,8 @@ function App() {
         <Routes>
           <Route excat path="/" element={<Home />} />
           <Route excat path="/login" element={<Login />} />
+          <Route excat path="/signup" element={<Signup />} />
+          <Route excat path="/settings" element={<Settings />} />
         </Routes>
       </Router>
     </div>

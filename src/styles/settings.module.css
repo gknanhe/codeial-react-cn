@@ -1,0 +1,95 @@
+.settings {
+  display: block;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.392);
+  -webkit-backdrop-filter: blur(7px);
+  backdrop-filter: blur(7px);
+  border: 2px solid rgb(255 255 255 / 19%);
+  border-radius: 20px;
+  padding: 30px;
+  /* border-radius: 6px; */
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 30%;
+  /* border: 1px solid #5c5d715a; */
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.settings .imgContainer {
+  display: flex;
+  margin-bottom: 40px;
+  justify-content: center;
+}
+.settings .imgContainer img {
+  height: 100px;
+}
+.settings .btnGrp {
+  display: flex;
+  flex-direction: column;
+}
+.settings button {
+  border: none;
+  padding: 9px 15px;
+  width: fit-content;
+  font-size: 16px;
+  border-radius: 7px;
+  margin-top: 20px;
+}
+.settings button:hover {
+  cursor: pointer;
+}
+.settings button:focus {
+  outline: none;
+}
+.settings .editBtn {
+  border: 1px solid #ef7917;
+  box-sizing: border-box;
+  color: #ef7917;
+}
+.settings .saveBtn {
+  background: #ef7917;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+}
+.settings .goBack {
+  color: #ef7917;
+  margin-top: 7px;
+  font-size: 13px;
+}
+.settings .goBack:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+.settings .field {
+  margin-bottom: 10px;
+}
+.settings .field .fieldLabel {
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 22px;
+  color: #ffffff;
+  padding: 5px 0;
+}
+.settings .field input {
+  margin-top: 6px;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  color: #fff;
+  padding: 3px 10px;
+  border: 1px solid #ccc8db38;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+@media (max-width: 586px) {
+  .settings {
+    /* border-radius: 6px; */
+
+    width: 95%;
+    /* border: 1px solid #5c5d715a; */
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+    margin-bottom: 100px;
+  }
+}
