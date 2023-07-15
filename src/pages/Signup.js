@@ -1,6 +1,6 @@
 import styles from '../styles/Login.module.css';
 import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom'; //navigate to page by chaching url
+import { useNavigate, Navigate } from 'react-router-dom'; //navigate to page by chaching url
 import { useState } from 'react';
 import { toast } from 'react-toastify';
 
@@ -75,6 +75,20 @@ const Register = () => {
     setSigningUp(false);
   };
 
+  const [passwordType, setPasswordType] = useState('password');
+
+  const togglePassword = () => {
+    if (passwordType === 'password') {
+      setPasswordType('text');
+      return;
+    }
+    setPasswordType('password');
+  };
+
+  if (auth.user) {
+    return <Navigate to="/" />;
+  }
+
   return (
     <section>
       <div className={styles.formBox}>
@@ -94,21 +108,6 @@ const Register = () => {
               <label htmlFor="name">Name</label>
             </div>
             <div className={styles.inputBox}>
-              {/* <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="feather feather-mail"
-              >
-                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                <polyline points="22,6 12,13 2,6"></polyline>
-              </svg> */}
               <input
                 type="email"
                 id="email"
@@ -121,23 +120,57 @@ const Register = () => {
               <label htmlFor="email">Email</label>
             </div>
             <div className={styles.inputBox}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-lock"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
+              <div className={styles.passwordShow} onClick={togglePassword}>
+                {passwordType === 'password' ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-lock"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-unlock"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                  </svg>
+                )}
+              </div>
               <input
-                type="password"
+                type={passwordType}
                 id="password"
                 required
                 value={password}
@@ -148,23 +181,57 @@ const Register = () => {
               <label htmlFor="password">Password</label>
             </div>
             <div className={styles.inputBox}>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="feather feather-lock"
-              >
-                <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-                <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-              </svg>
+              <div className={styles.passwordShow} onClick={togglePassword}>
+                {passwordType === 'password' ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-lock"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    viewBox="0 0 22 22"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    className="feather feather-unlock"
+                  >
+                    <rect
+                      x="3"
+                      y="11"
+                      width="18"
+                      height="11"
+                      rx="2"
+                      ry="2"
+                    ></rect>
+                    <path d="M7 11V7a5 5 0 0 1 9.9-1"></path>
+                  </svg>
+                )}
+              </div>
               <input
-                type="password"
+                type={passwordType}
                 id="confirmPassword"
                 required
                 value={confirmPassword}

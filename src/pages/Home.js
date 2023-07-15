@@ -4,6 +4,7 @@ import Comment from '../components/Comments';
 import { useEffect, useState } from 'react';
 import { getPost } from '../api';
 import Loader from '../components/Loader';
+import { Link } from 'react-router-dom';
 
 //write props in {} alternate way or just props
 const Home = () => {
@@ -53,7 +54,12 @@ const Home = () => {
               >
                 {post.user.name}
               </Link> */}
-                    <span className={styles.postAuther}>{post.user.name}</span>
+                    <Link
+                      to={`user/${post.user._id}`}
+                      className={styles.postAuther}
+                    >
+                      {post.user.name}
+                    </Link>
                     <span className={styles.postTime}>a minute ago</span>
                   </div>
                 </div>

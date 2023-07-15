@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import { useState } from 'react';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'; // to Navigate to a route
 import { useAuth } from '../hooks';
 
 const Login = () => {
@@ -12,7 +12,7 @@ const Login = () => {
   const [loggingIn, setLoggingIn] = useState(false);
   const auth = useAuth();
   console.log(auth);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,7 +39,7 @@ const Login = () => {
         theme: 'dark',
       });
 
-      navigate('/');
+      // navigate('/');
     } else {
       toast.error(response.message, {
         autoClose: 5000,
@@ -59,6 +59,10 @@ const Login = () => {
     }
     setPasswordType('password');
   };
+
+  if (auth.user) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <section>
@@ -129,7 +133,7 @@ const Login = () => {
                     strokeWidth="2"
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    class="feather feather-unlock"
+                    className="feather feather-unlock"
                   >
                     <rect
                       x="3"
