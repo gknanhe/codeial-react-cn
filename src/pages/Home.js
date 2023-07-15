@@ -34,8 +34,8 @@ const Home = () => {
     <div className={styles.postList}>
       {posts.map((post) => {
         return (
-          <div className={styles.postContainer}>
-            <div className={styles.postWrapper} key={post._id}>
+          <div className={styles.postContainer} key={post._id}>
+            <div className={styles.postWrapper}>
               <div className={styles.postHeader}>
                 <div className={styles.postAvatar}>
                   <img
@@ -43,19 +43,9 @@ const Home = () => {
                     alt="user-pic"
                   />
                   <div>
-                    {/* <Link
-                to={{
-                  pathname: `/user/${post.user._id}`,
-                  state: {
-                    user: post.user,
-                  },
-                }}
-                className={styles.postAuthor}
-              >
-                {post.user.name}
-              </Link> */}
                     <Link
                       to={`user/${post.user._id}`}
+                      state={{ user: post.user }}
                       className={styles.postAuther}
                     >
                       {post.user.name}
