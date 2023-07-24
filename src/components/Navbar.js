@@ -21,7 +21,7 @@ const Navbar = () => {
           <div className={styles.user}>
             <Link to="/settings">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
+                src="https://w0.peakpx.com/wallpaper/55/926/HD-wallpaper-thanos-crown-infinity-war-marvel-movie.jpg"
                 alt=""
                 className={styles.userDp}
               />

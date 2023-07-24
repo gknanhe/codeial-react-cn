@@ -2,7 +2,7 @@ import { API_URLS, getFormBody, LOCALSTORAGE_TOKEN_KEY } from '../utils';
 
 //some things are required as we used to send in postman for API calls
 const customFetch = async (url, { body, ...customConfig }) => {
-  console.log(url);
+  // console.log(url);
   const token = window.localStorage.getItem(LOCALSTORAGE_TOKEN_KEY);
 
   //headers as we require in postman for api call
@@ -29,7 +29,7 @@ const customFetch = async (url, { body, ...customConfig }) => {
   }
 
   try {
-    console.log('config', config);
+    // console.log('config', config);
     const response = await fetch(url, config);
     const data = await response.json();
 
@@ -50,28 +50,29 @@ const customFetch = async (url, { body, ...customConfig }) => {
   }
 };
 
-export const getPost = (page = 1, limit = 5) => {
-  return customFetch(API_URLS.posts(page, limit), {
+export const getPost = async (page = 1, limit = 5) => {
+  return await customFetch(API_URLS.posts(page, limit), {
     method: 'GET',
   });
 };
 
-export const login = (email, password) => {
-  return customFetch(API_URLS.login(), {
+export const login = async (email, password) => {
+  console.log(API_URLS.login());
+  return await customFetch(API_URLS.login(), {
     method: 'POST',
     body: { email, password },
   });
 };
 
 export const register = async (name, email, password, confirmPassword) => {
-  return customFetch(API_URLS.signup(), {
+  return await customFetch(API_URLS.signup(), {
     method: 'POST',
     body: { name, email, password, confirm_password: confirmPassword },
   });
 };
 
 export const editProfile = async (userId, name, password, confirmPassword) => {
-  return customFetch(API_URLS.editUser(), {
+  return await customFetch(API_URLS.editUser(), {
     method: 'POST',
     body: {
       id: userId,
@@ -82,8 +83,45 @@ export const editProfile = async (userId, name, password, confirmPassword) => {
   });
 };
 
-export const fetchUserProfile = (userId) => {
-  return customFetch(API_URLS.userInfo(userId), {
+export const fetchUserProfile = async (userId) => {
+  return await customFetch(API_URLS.userInfo(userId), {
     method: 'GET',
+  });
+};
+
+export const fetchUserFriends = async () => {
+  return await customFetch(API_URLS.friends(), {
+    method: 'GET',
+  });
+};
+
+export const addFriend = async (userId) => {
+  return await customFetch(API_URLS.createFriendship(userId), {
+    method: 'POST',
+  });
+};
+
+export const removeFriend = async (userId) => {
+  return await customFetch(API_URLS.removeFriend(userId), {
+    method: 'POST',
+  });
+};
+
+export const addPost = (content) => {
+  return customFetch(API_URLS.createPost(), {
+    method: 'POST',
+    body: {
+      content,
+    },
+  });
+};
+
+export const createComment = async (content, postId) => {
+  return customFetch(API_URLS.comment(), {
+    method: 'POST',
+    body: {
+      post_id: postId,
+      content,
+    },
   });
 };

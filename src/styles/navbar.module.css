@@ -20,7 +20,7 @@
   backdrop-filter: blur(7px);
   /* background:rgba(0, 0, 0, 0.392);
     backdrop-filter: blur(7px); */
-  padding: 30px 20px;
+  padding: 12px 20px;
   /* margin-bottom: 30px; */
   align-items: center;
   justify-content: space-between;
@@ -36,8 +36,17 @@
   font-size: 40px;
   color: #ece60e;
 }
-.nav .userDp {
+/* .nav .userDp {
   height: 40px;
+  width: 40px;
+} */
+.user img {
+  width: 55px;
+  height: 55px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 50%;
 }
 .nav .user {
   display: flex;

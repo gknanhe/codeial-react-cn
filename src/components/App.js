@@ -24,6 +24,8 @@ const PrivateRoute = () => {
 function App() {
   const auth = useAuth();
 
+  console.log('auth App', auth);
+
   if (auth.loading) {
     return <Loader />;
   }

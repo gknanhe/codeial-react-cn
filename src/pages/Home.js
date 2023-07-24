@@ -1,106 +1,34 @@
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+// import { Link } from 'react-router-dom';
+
 import styles from '../styles/home.module.css';
-import Comment from '../components/Comments';
-import { useEffect, useState } from 'react';
-import { getPost } from '../api';
-import Loader from '../components/Loader';
-import { Link } from 'react-router-dom';
+import { Loader, Post, FriendsList, CreatePost } from '../components';
+import { useAuth, usePosts } from '../hooks';
 
 //write props in {} alternate way or just props
 const Home = () => {
-  const [posts, setPost] = useState([]);
-  const [loading, setLoader] = useState(true);
+  const auth = useAuth();
+  const posts = usePosts();
 
-  useEffect(() => {
-    const fetchPost = async () => {
-      const response = await getPost();
-      if (response.success) {
-        setPost(response.data.posts);
-      }
-
-      setLoader(false);
-
-      console.log(response);
-    };
-
-    fetchPost();
-  }, []);
-
-  if (loading) {
+  if (posts.loading) {
     return <Loader />;
   }
 
   return (
-    <div className={styles.postList}>
-      {posts.map((post) => {
-        return (
-          <div className={styles.postContainer} key={post._id}>
-            <div className={styles.postWrapper}>
-              <div className={styles.postHeader}>
-                <div className={styles.postAvatar}>
-                  <img
-                    src="https://cdn-icons-png.flaticon.com/512/3177/3177440.png"
-                    alt="user-pic"
-                  />
-                  <div>
-                    <Link
-                      to={`user/${post.user._id}`}
-                      state={{ user: post.user }}
-                      className={styles.postAuther}
-                    >
-                      {post.user.name}
-                    </Link>
-                    <span className={styles.postTime}>a minute ago</span>
-                  </div>
-                </div>
-                <div className={styles.postContent}>{post.content}</div>
-
-                <div className={styles.postActions}>
-                  <div className={styles.postLike}>
-                    <button>
-                      {/* <img
-                        src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
-                        alt="likes-icon"
-                      /> */}
-                      <svg
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        fill="none"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        viewBox="0 0 24 24"
-                      >
-                        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"></path>
-                      </svg>
-                    </button>
-                    <span>{post.likes.length}</span>
-                  </div>
-
-                  <div className={styles.postCommentsIcon}>
-                    <img
-                      src="https://cdn-icons-png.flaticon.com/512/2190/2190552.png"
-                      alt="comments-icon"
-                    />
-                    <span>{post.comments.length}</span>
-                  </div>
-                </div>
-                <div className={styles.postCommentBox}>
-                  <textarea placeholder="Start typing a comment.."></textarea>
-                </div>
-
-                <div className={styles.postCommentsList}>
-                  {post.comments.map((comment) => (
-                    <Comment
-                      comment={comment}
-                      key={`post-comment-${comment._id}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            </div>
+    <div className={styles.home}>
+      <div className={styles.mainContainer}>
+        <div className={styles.postSection}>
+          <div className={styles.postList}>
+            {auth.user && <CreatePost />}
+            {posts.data.map((post) => {
+              return <Post post={post} key={`post-${post._id}`} />;
+            })}
           </div>
-        );
-      })}
+        </div>
+      </div>
+      <div className={styles.rightContainer}>
+        {auth.user && <FriendsList />}
+      </div>
     </div>
   );
 };
@@ -108,8 +36,8 @@ const Home = () => {
 //to check props should get only array
 //add validation
 
-Home.propType = {
-  posts: PropTypes.array.isRequired, //.isrequired to make it required
-};
+// Home.propType = {
+//   posts: PropTypes.array.isRequired, //.isrequired to make it required
+// };
 
 export default Home;
