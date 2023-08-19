@@ -252,7 +252,10 @@ const Register = () => {
                 {signingUp ? 'Signing up...' : 'Signup'}
               </button>
             </div>
-            <div className={styles.hrContainer}>
+
+            {/* the Social signUp is not available on server */}
+
+            {/* <div className={styles.hrContainer}>
               <hr className={styles.hr} />
               <p>or</p>
               <hr className={styles.hr} />
@@ -266,7 +269,7 @@ const Register = () => {
                 />
                 <span className={styles.span}>Continue with Google</span>
               </div>
-            </div>
+            </div> */}
 
             <div className={styles.register}>
               <p>

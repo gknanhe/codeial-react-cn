@@ -156,7 +156,10 @@ const Login = () => {
                 {loggingIn ? 'Logging in...' : 'Login'}
               </button>
             </div>
-            <div className={styles.hrContainer}>
+
+            {/* the Social login is not available on server */}
+
+            {/* <div className={styles.hrContainer}>
               <hr className={styles.hr} />
               <p>or</p>
               <hr className={styles.hr} />
@@ -169,7 +172,7 @@ const Login = () => {
                 />
                 <span className={styles.span}>Continue with Google</span>
               </div>
-            </div>
+            </div> */}
 
             <div className={styles.register}>
               <p>

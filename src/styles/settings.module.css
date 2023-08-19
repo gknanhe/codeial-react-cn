@@ -33,6 +33,7 @@
   font-size: 16px;
   border-radius: 7px;
   margin-top: 20px;
+  background-color: rgb(11, 109, 255);
 }
 .settings button:hover {
   cursor: pointer;
@@ -41,9 +42,9 @@
   outline: none;
 }
 .settings .editBtn {
-  border: 1px solid #ef7917;
+  /* border: 1px solid; */
   box-sizing: border-box;
-  color: #ef7917;
+  color: #fff;
 }
 .settings .saveBtn {
   background: #ef7917;
@@ -52,7 +53,7 @@
   padding: 10px 20px;
 }
 .settings .goBack {
-  color: #ef7917;
+  color: #fff;
   margin-top: 7px;
   font-size: 13px;
 }

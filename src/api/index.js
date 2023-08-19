@@ -50,7 +50,7 @@ const customFetch = async (url, { body, ...customConfig }) => {
   }
 };
 
-export const getPost = async (page = 1, limit = 5) => {
+export const getPost = async (page = 1, limit = 25) => {
   return await customFetch(API_URLS.posts(page, limit), {
     method: 'GET',
   });
@@ -123,5 +123,17 @@ export const createComment = async (content, postId) => {
       post_id: postId,
       content,
     },
+  });
+};
+
+export const toggleLike = async (itemId, itemType) => {
+  return customFetch(API_URLS.toggleLike(itemId, itemType), {
+    method: 'POST',
+  });
+};
+
+export const searchUsers = async (searchText) => {
+  return customFetch(API_URLS.searchUsers(searchText), {
+    method: 'GET',
   });
 };

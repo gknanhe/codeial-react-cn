@@ -3,17 +3,28 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
-import { createComment } from '../api';
+//lib for date formating
+// eslint-disable-next-line
+
+import { formatDistanceToNow, parseISO } from 'date-fns';
+
+import { createComment, toggleLike } from '../api';
 import { usePosts } from '../hooks';
 import styles from '../styles/home.module.css';
 import { Comments } from './';
+import { useAuth } from '../hooks';
 
 const Post = ({ post }) => {
+  //parse date
+  const createdAtDate = parseISO(post.createdAt);
+  //formate date
+  const formattedDate = formatDistanceToNow(createdAtDate, { addSuffix: true });
+
   const [comment, setComment] = useState('');
   // eslint-disable-next-line
   const [creatingComment, setCreatingComment] = useState(false);
   const posts = usePosts();
-
+  const auth = useAuth();
   const handleAddComment = async (e) => {
     if (e.key === 'Enter') {
       setCreatingComment(true);
@@ -38,6 +49,29 @@ const Post = ({ post }) => {
     }
   };
 
+  const handlePostLikeClick = async () => {
+    const response = await toggleLike(post._id, 'Post');
+
+    if (response.success) {
+      if (response.data.deleted) {
+        toast.success(' Unliked Post', {
+          autoClose: 5000,
+          theme: 'dark',
+        });
+      } else {
+        toast.success('Liked Post', {
+          autoClose: 5000,
+          theme: 'dark',
+        });
+      }
+    } else {
+      toast.error(response.message, {
+        autoClose: 5000,
+        theme: 'dark',
+      });
+    }
+  };
+
   return (
     <div className={styles.postContainer} key={post._id}>
       <div className={styles.postWrapper}>
@@ -55,14 +89,14 @@ const Post = ({ post }) => {
               >
                 {post.user.name}
               </Link>
-              <span className={styles.postTime}>a minute ago</span>
+              <span className={styles.postTime}>{formattedDate}</span>
             </div>
           </div>
           <div className={styles.postContent}>{post.content}</div>
 
           <div className={styles.postActions}>
             <div className={styles.postLike}>
-              <button>
+              <button onClick={handlePostLikeClick}>
                 {/* <img
                 src="https://cdn-icons-png.flaticon.com/512/833/833472.png"
                 alt="likes-icon"
@@ -89,14 +123,16 @@ const Post = ({ post }) => {
               <span>{post.comments.length}</span>
             </div>
           </div>
-          <div className={styles.postCommentBox}>
-            <textarea
-              placeholder="Start typing a comment.."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              onKeyDown={handleAddComment}
-            ></textarea>
-          </div>
+          {auth.user && (
+            <div className={styles.postCommentBox}>
+              <textarea
+                placeholder="Start typing a comment.."
+                value={comment}
+                onChange={(e) => setComment(e.target.value)}
+                onKeyDown={handleAddComment}
+              ></textarea>
+            </div>
+          )}
 
           <div className={styles.postCommentsList}>
             {post.comments.map((comment) => (
