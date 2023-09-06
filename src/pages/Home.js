@@ -20,7 +20,7 @@ const Home = () => {
         <div className={styles.postSection}>
           <div className={styles.postList}>
             {auth.user && <CreatePost />}
-            {posts.data.map((post) => {
+            {posts?.data.map((post) => {
               return <Post post={post} key={`post-${post._id}`} />;
             })}
           </div>

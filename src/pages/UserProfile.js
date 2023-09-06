@@ -39,12 +39,12 @@ const UserProfile = () => {
 
   //A function to check whether user is a friend or not
   const checkIfUserIsAFriend = () => {
-    console.log('from user profile', auth.user);
+    // console.log('from user profile', auth.user);
 
     // creating a reference for friends array in auth.user.friends and naming it friends.
 
     const friends = auth.user.friends;
-    console.log('friends', friends);
+    // console.log('friends', friends);
 
     const friendIds = friends.map((friend) => friend.to_user._id);
     const index = friendIds.indexOf(userId);
@@ -93,7 +93,7 @@ const UserProfile = () => {
 
     if (response.success) {
       const { friendship } = response.data; //freind details
-      console.log('friendship', friendship);
+      // console.log('friendship', friendship);
 
       auth.updateUserFriendship(true, friendship);
       toast.success('Added friend', {

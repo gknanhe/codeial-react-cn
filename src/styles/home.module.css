@@ -95,6 +95,18 @@
   color: #ccc8db;
   margin: 15px 0;
 }
+
+.postContent::before {
+  content: '';
+  border: 0px;
+  border-left: 2px solid;
+  border-image: linear-gradient(to right, rgb(46, 76, 246), rgb(112, 58, 213));
+  border-image-slice: 1;
+  color: white;
+  margin: auto;
+  text-decoration: none;
+  margin-right: 10px;
+}
 .postActions {
   padding: 5px;
   display: flex;
@@ -299,16 +311,17 @@
   flex-grow: 0.8;
 }
 .friendsList {
-  width: 290px;
+  min-width: 290px;
+  height: 100vh;
   background: #151728;
   margin-top: 20px;
   flex-grow: 0.2;
-  height: 50vh;
-  padding: 5px 15px;
+  padding: 10px 15px;
   box-sizing: border-box;
   border: 1px solid #272a3a;
   border-radius: 4px;
   font-family: 'DM Sans', sans-serif;
+  overflow-y: scroll;
 }
 .friendsList .header {
   border-bottom: 1px solid #272a3a;

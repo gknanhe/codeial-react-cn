@@ -108,12 +108,21 @@ export const removeFriend = async (userId) => {
 };
 
 export const addPost = (content) => {
-  return customFetch(API_URLS.createPost(), {
+  const response = customFetch(API_URLS.createPost(), {
     method: 'POST',
     body: {
       content,
     },
   });
+
+  console.log(response);
+  return response;
+  // return customFetch(API_URLS.createPost(), {
+  //   method: 'POST',
+  //   body: {
+  //     content,
+  //   },
+  // });
 };
 
 export const createComment = async (content, postId) => {
