@@ -1,4 +1,34 @@
-# Getting Started with Create React App
+# < Codeial /> 🚀
+
+<br/>
+<p align="center">
+  <img height="450" width="1000" src="https://github.com/gknanhe/codeial-nodejs-website/assets/74034986/8c5e7cbe-4311-4c3b-a481-26efd85d5d34">
+<!-- <img height="400" width="800" src="https://user-images.githubusercontent.com/76626529/182868886-3f26cbc9-f619-4250-8951-0d834805251c.png"> -->
+</p>
+<br/>
+
+## 🔗 Links
+
+> ## Checkout the Website [Web Application](https://codeial-react-web.netlify.app/)
+
+<br/>
+
+## ⭐ Introduction
+
+Codeial is a Social Media Website designed using Full Stack Web Development through Back-End Technology of MEN Stack (MongoDB, ExpressJS, NodeJS), RedisDB, GulpJS & Passport Auths.
+Users are able to create, share the posts and connect with each other across the platform.
+This website is completely Responsive across all the Devices.
+
+- Users are able to login through social & manual login. They can also reset their passwords using 'Forgot Password'.
+
+- Users can like both posts - comments & can create the posts and comments.
+
+- Users can add other users as friends.
+- JWT functionality is also present in the code but is not used.
+  <br/>
+  <br/>
+
+### Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
